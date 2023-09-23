@@ -1,7 +1,8 @@
 SHELL =/bin/bash
 PYTHON = python3
 FLASK_APP = app.py
-IMAGE_NAME = pyapp-example
+IMAGE_TAG = pyapp-example:0.1
+IMAGE_TAG_REMOTE = sphanlabs/$(IMAGE_TAG)
 
 default: build_docker run_docker
 
@@ -17,12 +18,17 @@ run:
 # Clean up the virtual environment, compiled files, docker image
 clean:
 	rm -rf venv __pycache__
-	docker rmi $(IMAGE_NAME)
+	docker rmi $(IMAGE_TAG)
 
 # build docker image
-build_docker: 
-	docker build -t $(IMAGE_NAME) .
+docker_build: 
+	docker build -t $(IMAGE_TAG) .
 
 # build, and run docker container
-run_docker:
-	docker run -it --rm -p 80:8000 $(IMAGE_NAME)
+docker_run:
+	docker run -it --rm -p 80:8000 $(IMAGE_TAG)
+
+# publish to docker register
+docker_push:
+	docker tag $(IMAGE_TAG) $(IMAGE_TAG_REMOTE)
+	docker push $(IMAGE_TAG_REMOTE)

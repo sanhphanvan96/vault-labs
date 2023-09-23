@@ -10,8 +10,10 @@ def get_secret_from_env(ENV_VARIABLE):
 def get_secret_from_file(file_path):
     try:
         with open(file_path, 'r') as file:
-            secrets = file.read().strip()
-            return secrets
+            for line in file:
+                key, value = line.strip().split('=')
+                if key == 'APP_TOKEN':
+                    return value
     except FileNotFoundError:
         return None
 
