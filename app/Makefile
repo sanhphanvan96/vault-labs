@@ -21,7 +21,7 @@ clean:
 	docker rmi $(IMAGE_TAG)
 
 # build docker image
-docker_build: 
+docker_build:
 	docker build -t $(IMAGE_TAG) .
 
 # build, and run docker container
