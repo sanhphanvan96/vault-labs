@@ -16,6 +16,8 @@
     owner: "{{ansible_user}}"
     group: "{{ansible_user}}"
     mode: u=rw,g=r,o=r
+  notify:
+    - Restart Docker Container
 
 - name: Pull Docker Image
   docker_image:
@@ -31,4 +33,5 @@
       - "80:8000"
     auto_remove: yes
     volumes:
-      - "/etc/app/app.conf:/etc/app/app.conf"
+      - "/etc/app/app.conf:/etc/app/app.conf:ro"
+

@@ -1,0 +1,5 @@
+---
+- name: Restart Docker Container
+  docker_container:
+    name: app
+    restart: true
