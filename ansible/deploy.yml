@@ -1,0 +1,6 @@
+---
+- name: Deploy python application
+  hosts: all
+  roles:
+    - app.deploy
+

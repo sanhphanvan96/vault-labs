@@ -1,0 +1,34 @@
+---
+- name: Make code directory
+  become: true
+  # become_user: "{{ansible_user}}"
+  file:
+    dest: "/etc/app"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+    state: directory
+
+- name: Generate app.conf
+  become: true
+  template:
+    src: "app.conf.j2"
+    dest: "/etc/app/app.conf"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+    mode: u=rw,g=r,o=r
+
+- name: Pull Docker Image
+  docker_image:
+    name: "{{docker_image}}"
+    source: pull
+
+- name: Run Docker Container
+  docker_container:
+    name: app
+    image: "{{docker_image}}"
+    state: started
+    ports:
+      - "80:8000"
+    auto_remove: yes
+    volumes:
+      - "/etc/app/app.conf:/etc/app/app.conf"
