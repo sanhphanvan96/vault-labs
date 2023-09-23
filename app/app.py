@@ -13,6 +13,7 @@ def get_secret_from_file(file_path):
             for line in file:
                 key, value = line.strip().split('=')
                 if key == 'APP_TOKEN':
+                    value = value.strip('"').strip("'")
                     return value
     except FileNotFoundError:
         return None
