@@ -3,6 +3,8 @@ PYTHON = python3
 FLASK_APP = app.py
 IMAGE_NAME = pyapp-example
 
+default: build_docker run_docker
+
 # Install dependencies
 setup:
 	$(PYTHON) -m venv venv
@@ -17,7 +19,10 @@ clean:
 	rm -rf venv __pycache__
 	docker rmi $(IMAGE_NAME)
 
+# build docker image
+build_docker: 
+	docker build -t $(IMAGE_NAME) .
+
 # build, and run docker container
 run_docker:
-	docker build -t $(IMAGE_NAME) .
 	docker run -it --rm -p 80:8000 $(IMAGE_NAME)
