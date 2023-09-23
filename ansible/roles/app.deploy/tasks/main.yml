@@ -34,4 +34,3 @@
     auto_remove: yes
     volumes:
       - "/etc/app/app.conf:/etc/app/app.conf:ro"
-
