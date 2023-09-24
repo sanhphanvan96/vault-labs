@@ -3,7 +3,7 @@ run:
 
 provision:
 	docker logs vault 2>&1 | grep "Root Token" | awk '{ print $$3;}' | tee .vault-token
-	chmod +x ./script.sh && ./script.sh
+	chmod +x ./provision.sh && ./provision.sh
 
 clean:
 	docker stop vault

@@ -16,4 +16,4 @@ vault kv get -field=APP_TOKEN apps/my-app
 cat app-policy.hcl
 vault policy write app-reader app-policy.hcl
 vault token create -display-name app-reader -explicit-max-ttl 8760h -policy app-reader -ttl 720h -renewable
-echo "The token above is used for ansible. To use it, export VAULT_TOKEN=hvs.xxx"
+echo "The token above is used for ansible. To use it, export VAULT_TOKEN=hvs.xxx or put in .app-reader.vault-token"
