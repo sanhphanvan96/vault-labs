@@ -1,2 +1,2 @@
-docker_image: "sphanlabs/pyapp-example:0.2"
+docker_image: "sphanlabs/pyapp-example:0.3"
 app_token: "{{ lookup('community.hashi_vault.hashi_vault', 'apps/data/my-app:APP_TOKEN') }}"

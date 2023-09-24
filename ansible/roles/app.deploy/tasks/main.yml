@@ -1,7 +1,6 @@
 ---
 - name: Make code directory
   become: true
-  # become_user: "{{ansible_user}}"
   file:
     dest: "/etc/app"
     owner: "{{ansible_user}}"
@@ -15,7 +14,7 @@
     dest: "/etc/app/app.conf"
     owner: "{{ansible_user}}"
     group: "{{ansible_user}}"
-    mode: u=rw,g=r,o=r
+    mode: u=r,g=r,o=
   notify:
     - Restart Docker Container
 
