@@ -1,7 +1,7 @@
 SHELL =/bin/bash
 PYTHON = python3
 FLASK_APP = app.py
-IMAGE_TAG = pyapp-example:0.2
+IMAGE_TAG = pyapp-example:0.3
 IMAGE_TAG_REMOTE = sphanlabs/$(IMAGE_TAG)
 
 default: build_docker run_docker
